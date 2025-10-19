@@ -1,0 +1,341 @@
+/* style.css - DESIGN UTAMA YUNIME V7 (Bar Rating, Hitam/Oranye, Poster 2:3) */
+
+:root {
+    --bg-dark: #0f0f0f;        /* Hitam Pekat */
+    --bg-card: #1c1c1c;        /* Hitam Agak Terang untuk Card/Background Konten */
+    --accent: #ff8c00;         /* Oranye Utama */
+    --star-color: #ffc107;     /* Warna Emas/Kuning untuk Bintang */
+    --text-light: #eeeeee;     /* Putih Pudar */
+    --text-muted: #aaaaaa;     /* Abu-abu untuk detail */
+}
+
+/* GLOBAL RESET & SMOOTHNESS */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, opacity 0.3s ease; 
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* CONTAINER PEMBATAS LEBAR */
+.container {
+    width: 100%;
+    max-width: 1200px; 
+    margin: 0 auto;
+    padding: 0 10px; 
+}
+
+/* HEADER DAN NAVIGASI */
+.header {
+    background-color: #000000;
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.logo a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 1.6em;
+    font-weight: 900;
+}
+
+/* TOMBOL UMUM */
+.btn {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    text-align: center;
+}
+.btn:hover:not(:disabled) {
+    background-color: #e07b00;
+    transform: scale(1.05);
+}
+.btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.5; 
+}
+
+/* SEARCH BAR RAPIH */
+.search-bar input {
+    padding: 8px 15px;
+    border: 1px solid var(--accent);
+    border-radius: 20px; 
+    background-color: var(--bg-card);
+    color: var(--text-light);
+    width: 150px; 
+}
+
+/* JUDUL SECTION */
+h1 {
+    font-size: 1.5em;
+    padding: 10px 0;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 10px;
+}
+
+/* KARTU ANIME (INDEX.HTML) - GRID RAPIH */
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); 
+    gap: 15px;
+    padding: 20px 0;
+}
+
+.anime-card {
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.anime-card:hover {
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 15px rgba(255, 140, 0, 0.5); 
+}
+
+/* RASIO POSTER 2:3 */
+.anime-card img {
+    width: 100%;
+    aspect-ratio: 2/3; 
+    object-fit: cover;
+}
+
+.anime-info {
+    padding: 10px 8px;
+    font-size: 0.9em;
+    min-height: 80px; /* Jaga agar tinggi kartu sama */
+}
+
+.anime-info h3 {
+    font-size: 1em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+}
+
+/* --- BAR RATING STYLES GLOBAL --- */
+.rating-bar {
+    display: inline-flex; 
+    align-items: center;
+    gap: 2px;
+}
+
+.rating-bar .star {
+    font-size: 1.1em;
+    color: var(--star-color); 
+    display: inline-block;
+    position: relative; 
+}
+
+.rating-bar .empty {
+    color: var(--text-muted); 
+}
+
+.rating-bar .rating-value {
+    color: var(--text-light);
+    font-weight: bold;
+    font-size: 0.85em;
+    margin-left: 5px;
+}
+
+/* Bintang Setengah (Half Star) - Teknik CSS Clip */
+.rating-bar .half {
+    color: var(--star-color);
+    overflow: hidden; 
+    width: 0.55em; 
+    direction: ltr;
+}
+
+/* CAROUSEL RAPIH (16:9) */
+.carousel-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    margin: 20px 0;
+    border-radius: 8px;
+    position: relative; 
+}
+.carousel {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease-in-out; 
+}
+.carousel-item {
+    min-width: 100%; 
+    height: 100%;
+    position: relative;
+}
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.carousel-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+    padding: 20px 15px 10px;
+}
+.overlay-info h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+.overlay-info .episode-status {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* DETAIL ANIME (anime.html) */
+.anime-detail-container h1 {
+    font-size: 1.8em; 
+    text-align: center;
+    margin-top: 10px;
+    border-bottom: none; 
+}
+.poster-wrapper {
+    width: 150px; 
+    aspect-ratio: 2/3; 
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 0 auto 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.poster-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* TAMPILAN DETAIL GAYA TABEL SIMPEL RAPIH */
+.anime-meta-table {
+    display: grid;
+    grid-template-columns: max-content 1fr; 
+    gap: 8px 15px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px; 
+}
+.anime-meta-table strong {
+    color: var(--accent);
+}
+/* Style spesifik untuk bar rating di halaman detail */
+.rating-bar-detail .rating-bar {
+    gap: 4px; 
+}
+.rating-bar-detail .star {
+    font-size: 1.2em; 
+}
+
+/* DESKRIPSI */
+.anime-description {
+    padding: 15px;
+    background-color: var(--bg-card);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.anime-description h3 {
+    margin-bottom: 10px;
+    color: var(--accent);
+}
+
+/* DAFTAR EPISODE */
+.episode-list h2 {
+    border-left: 5px solid var(--accent);
+    padding-left: 10px;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+.episode-item a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-card);
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: var(--text-light);
+}
+.episode-item a:hover {
+    background-color: #252525;
+}
+
+/* TOMBOL KEMBALI POLOS (anime.html) */
+.back-to-home-link {
+    display: block;
+    text-align: center;
+    margin: 20px auto 40px;
+    width: fit-content;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 5px;
+}
+.back-to-home-link:hover {
+    background-color: rgba(255, 140, 0, 0.1);
+}
+
+/* EPISODE.HTML STYLES */
+.video-wrapper {
+    width: 100%;
+    aspect-ratio: 16/9; /* Layar Video 16:9 */
+    margin: 0;
+}
+.video-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.episode-title-bar {
+    padding: 15px 10px;
+    font-size: 1.3em;
+    background-color: var(--bg-card);
+    border-bottom: 2px solid var(--accent);
+}
+.episode-controls {
+    padding: 15px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--bg-card);
+    margin-top: 10px;
+    border-radius: 8px;
+}
+.ep-nav {
+    display: flex;
+    gap: 10px;
+}
+.header .control-nav {
+    display: flex;
+    gap: 10px;
+}

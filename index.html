@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YUNIME - Beranda</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-index">
+    <header class="header">
+        <div class="logo"><a href="index.html">YUNIME</a></div>
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Cari Anime...">
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="carousel-container">
+            <div class="carousel" id="main-carousel">
+                
+                <a href="anime.html?id=CIT" class="carousel-item" data-genre="action, drama, fantasy">
+                    <img src="https://via.placeholder.com/1600x900/ff8c00/0f0f0f?text=AOT_CAROUSEL" alt="Chitose-kun wa Ramune Bin no Naka">
+                    <div class="carousel-overlay">
+                        <div class="overlay-info">
+                            <h2>Chitose-kun wa Ramune Bin no Naka</h2>
+                            <p>Genre: Romance, School, Comedy, Harem | Total Episode: <span class="episode-status">Ongoing</span></p>
+                        </div>
+                    </div>
+                </a>
+                
+                <a href="anime.html?id=NET" class="carousel-item" data-genre="shounen, supernatural">
+                    <img src="https://via.placeholder.com/1600x900/e07b00/0f0f0f?text=JJK_CAROUSEL" alt="Natsu e no Tunnel, Sayonara no Deguchi">
+                    <div class="carousel-overlay">
+                        <div class="overlay-info">
+                            <h2>Natsu e no Tunnel, Sayonara no Deguchi</h2>
+                            <p>Genre: Romance, Drama, Mystery, Movie | Total Episode: <span class="episode-status">Selesai</span></p>
+                        </div>
+                    </div>
+                </a>
+                
+            </div>
+        </div>
+
+        <h1>ANIME TERBARU</h1>
+        
+        <div class="anime-grid" id="anime-list">
+
+            <a href="anime.html?id=CIT" class="anime-card" data-genre="action, drama, fantasy">
+                <img src="chitose.jpg" alt="Chitose-kun wa Ramune Bin no Naka">
+                <div class="anime-info">
+                    <h3>Chitose-kun wa Ramune Bin no Naka</h3>
+                    <p class="genre-text">Romance, School, Comedy, Harem</p>
+                    <p class="rating">0/10</p> 
+                </div>
+            </a>
+            
+            <a href="anime.html?id=NET" class="anime-card" data-genre="shounen, supernatural">
+                <img src="net.jpg" alt="Natsu e no Tunnel, Sayonara no Deguchi">
+                <div class="anime-info">
+                    <h3>Natsu e no Tunnel, Sayonara no Deguchi</h3>
+                    <p class="genre-text">Romance, Drama, Mystery, Movie</p>
+                    <p class="rating">0/10</p>
+                </div>
+            </a>
+            
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
