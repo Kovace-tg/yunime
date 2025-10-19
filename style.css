@@ -1,12 +1,17 @@
-/* style.css - DESIGN UTAMA YUNIME V7 (Bar Rating, Hitam/Oranye, Poster 2:3) */
+/* style.css - DESIGN UTAMA YUNIME V13 (Rating Mark, Episode Nav, Search Bar) */
 
 :root {
-    --bg-dark: #0f0f0f;        /* Hitam Pekat */
-    --bg-card: #1c1c1c;        /* Hitam Agak Terang untuk Card/Background Konten */
-    --accent: #ff8c00;         /* Oranye Utama */
-    --star-color: #ffc107;     /* Warna Emas/Kuning untuk Bintang */
-    --text-light: #eeeeee;     /* Putih Pudar */
-    --text-muted: #aaaaaa;     /* Abu-abu untuk detail */
+    --bg-dark: #0f0f0f;        
+    --bg-card: #1c1c1c;        
+    --accent: #ff8c00;         
+    --star-color: #ffc107;     
+    --text-light: #eeeeee;     
+    --text-muted: #aaaaaa;     
+    --carousel-bg-light: #ffffff; 
+    --carousel-bg-medium: #aaaaaa; 
+    --btn-secondary: #333333; 
+    --tag-bg: #383838; 
+    --search-border: #555555; 
 }
 
 /* GLOBAL RESET & SMOOTHNESS */
@@ -15,7 +20,7 @@
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease, opacity 0.3s ease; 
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease; 
 }
 
 body {
@@ -53,37 +58,72 @@ body {
     font-weight: 900;
 }
 
-/* TOMBOL UMUM */
+/* --- TOMBOL UMUM --- */
 .btn {
     background-color: var(--accent);
     color: var(--bg-dark);
     border: none;
-    padding: 8px 15px;
+    padding: 10px 18px; 
     border-radius: 5px;
     cursor: pointer;
     text-decoration: none;
     font-weight: bold;
     font-size: 0.9em;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 .btn:hover:not(:disabled) {
     background-color: #e07b00;
-    transform: scale(1.05);
+    transform: translateY(-1px); 
+    box-shadow: 0 4px 8px rgba(255, 140, 0, 0.4);
 }
 .btn:disabled {
     cursor: not-allowed;
     opacity: 0.5; 
+    box-shadow: none;
+    transform: none;
 }
 
-/* SEARCH BAR RAPIH */
-.search-bar input {
-    padding: 8px 15px;
-    border: 1px solid var(--accent);
-    border-radius: 20px; 
-    background-color: var(--bg-card);
+.btn-secondary {
+    background-color: var(--btn-secondary);
     color: var(--text-light);
-    width: 150px; 
 }
+.btn-secondary:hover:not(:disabled) {
+    background-color: #444444;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* SEARCH BAR V13 (Lebih Panjang) */
+.search-bar {
+    display: flex;
+    align-items: center;
+    background-color: var(--bg-card); 
+    border: 1px solid var(--search-border);
+    border-radius: 20px; 
+    padding: 0 5px 0 15px; 
+    /* Lebar default desktop yang lebih panjang */
+    width: 250px; 
+}
+
+.search-bar input {
+    padding: 8px 0; 
+    border: none;
+    background-color: transparent;
+    color: var(--text-light);
+    width: 100%; /* Agar memenuhi search bar container */
+    font-size: 0.9em;
+    outline: none;
+}
+.search-bar input::placeholder {
+    color: var(--text-muted);
+}
+.search-icon {
+    color: var(--text-muted);
+    margin-left: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+}
+
 
 /* JUDUL SECTION */
 h1 {
@@ -121,12 +161,17 @@ h1 {
     width: 100%;
     aspect-ratio: 2/3; 
     object-fit: cover;
+    background-color: var(--carousel-bg-medium); 
 }
 
+/* --- ANIME-INFO --- */
 .anime-info {
     padding: 10px 8px;
     font-size: 0.9em;
-    min-height: 80px; /* Jaga agar tinggi kartu sama */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    min-height: 95px; 
 }
 
 .anime-info h3 {
@@ -137,40 +182,62 @@ h1 {
     margin-bottom: 4px;
 }
 
-/* --- BAR RATING STYLES GLOBAL --- */
-.rating-bar {
-    display: inline-flex; 
-    align-items: center;
-    gap: 2px;
+/* STYLING GENRE TAGS (Index) */
+.genre-tags-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 4px; 
+    margin-bottom: 5px; 
+    min-height: 30px; 
 }
-
-.rating-bar .star {
-    font-size: 1.1em;
-    color: var(--star-color); 
-    display: inline-block;
-    position: relative; 
-}
-
-.rating-bar .empty {
+.genre-tag {
+    background-color: var(--tag-bg); 
     color: var(--text-muted); 
+    font-size: 0.7em;
+    padding: 2px 5px;
+    border-radius: 3px;
+    white-space: nowrap; 
+    font-weight: 600;
 }
 
-.rating-bar .rating-value {
-    color: var(--text-light);
+/* RATING MARK V13 (Beranda dan Detail) */
+.rating-mark-container {
+    display: flex;
+    align-items: center;
+    padding-top: 5px; 
+}
+.rating-mark {
+    background-color: var(--accent);
+    color: var(--bg-dark);
+    padding: 3px 8px;
+    border-radius: 4px;
     font-weight: bold;
-    font-size: 0.85em;
-    margin-left: 5px;
+    font-size: 0.8em;
+    white-space: nowrap;
+}
+.rating-mark span {
+    margin-right: 3px;
+    font-size: 1em; /* Ukuran bintang */
 }
 
-/* Bintang Setengah (Half Star) - Teknik CSS Clip */
-.rating-bar .half {
-    color: var(--star-color);
-    overflow: hidden; 
-    width: 0.55em; 
-    direction: ltr;
+/* GENRE TAGS DI HALAMAN DETAIL (anime.html) */
+.genre-detail-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+.genre-tag-detail {
+    font-size: 0.8em;
+    padding: 3px 8px;
+    background-color: #444444; 
+    color: var(--accent);
+    font-weight: bold;
+    border-radius: 3px;
 }
 
-/* CAROUSEL RAPIH (16:9) */
+
+/* CAROUSEL RAPIH */
+/* ... (Kode Carousel tetap sama) ... */
 .carousel-container {
     width: 100%;
     aspect-ratio: 16/9;
@@ -178,6 +245,7 @@ h1 {
     margin: 20px 0;
     border-radius: 8px;
     position: relative; 
+    background-color: var(--carousel-bg-light); 
 }
 .carousel {
     display: flex;
@@ -205,25 +273,43 @@ h1 {
 .overlay-info h2 {
     font-size: 1.5em;
     margin-bottom: 5px;
+    color: var(--text-light); 
+}
+.overlay-info p {
+    color: rgba(255, 255, 255, 0.7); 
 }
 .overlay-info .episode-status {
     color: var(--accent);
     font-weight: bold;
 }
 
-/* DETAIL ANIME (anime.html) */
-.anime-detail-container h1 {
+
+/* DETAIL ANIME (anime.html) V13 */
+
+/* Mengurangi padding vertikal di container utama */
+.anime-detail-container {
+    padding-top: 10px;
+}
+
+.detail-header-content {
+    /* Mengurangi jarak bagian atas (header ke konten) */
+    margin-top: 10px; 
+}
+
+.detail-header-content h1 {
     font-size: 1.8em; 
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px; 
+    margin-bottom: 15px;
     border-bottom: none; 
 }
+
 .poster-wrapper {
-    width: 150px; 
+    width: 180px; /* Sedikit dilebarkan untuk tampilan desktop */
     aspect-ratio: 2/3; 
     overflow: hidden;
     border-radius: 8px;
-    margin: 0 auto 15px;
+    margin: 0 auto;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 .poster-wrapper img {
@@ -242,20 +328,18 @@ h1 {
     background-color: var(--bg-card);
     border-radius: 8px;
     width: 100%;
-    max-width: 400px; 
+    max-width: 450px; 
 }
 .anime-meta-table strong {
     color: var(--accent);
 }
-/* Style spesifik untuk bar rating di halaman detail */
-.rating-bar-detail .rating-bar {
-    gap: 4px; 
-}
-.rating-bar-detail .star {
-    font-size: 1.2em; 
+.rating-mark-detail {
+    /* Rating mark di halaman detail */
+    align-self: center; /* Meratakan ke tengah secara vertikal */
 }
 
 /* DESKRIPSI */
+/* ... (Tetap sama) ... */
 .anime-description {
     padding: 15px;
     background-color: var(--bg-card);
@@ -268,6 +352,7 @@ h1 {
 }
 
 /* DAFTAR EPISODE */
+/* ... (Tetap sama) ... */
 .episode-list h2 {
     border-left: 5px solid var(--accent);
     padding-left: 10px;
@@ -289,26 +374,23 @@ h1 {
     background-color: #252525;
 }
 
-/* TOMBOL KEMBALI POLOS (anime.html) */
-.back-to-home-link {
+/* TOMBOL KEMBALI DI ANIME.HTML */
+.back-to-home-link-v2 {
     display: block;
     text-align: center;
     margin: 20px auto 40px;
     width: fit-content;
-    padding: 10px 20px;
-    text-decoration: none;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    border-radius: 5px;
-}
-.back-to-home-link:hover {
-    background-color: rgba(255, 140, 0, 0.1);
+    border: none; 
+    font-weight: bold;
 }
 
-/* EPISODE.HTML STYLES */
+
+/* ========================================================== */
+/* EPISODE.HTML STYLES V13 */
+/* ========================================================== */
 .video-wrapper {
     width: 100%;
-    aspect-ratio: 16/9; /* Layar Video 16:9 */
+    aspect-ratio: 16/9; 
     margin: 0;
 }
 .video-wrapper iframe {
@@ -318,14 +400,22 @@ h1 {
 }
 .episode-title-bar {
     padding: 15px 10px;
-    font-size: 1.3em;
+    font-size: 1.1em; 
     background-color: var(--bg-card);
     border-bottom: 2px solid var(--accent);
 }
+.episode-title-bar h1 {
+    font-size: 1em; 
+    margin: 0;
+    border: none;
+}
+
+/* Kontrol Navigasi Episode V13 (Diperbagus) */
 .episode-controls {
     padding: 15px 10px;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Ubah menjadi kolom di default (HP) */
+    gap: 10px;
     align-items: center;
     background-color: var(--bg-card);
     margin-top: 10px;
@@ -334,8 +424,102 @@ h1 {
 .ep-nav {
     display: flex;
     gap: 10px;
+    width: 100%; /* Agar tombol nav memenuhi lebar di HP */
+    justify-content: center;
+}
+.btn-nav-ep {
+    width: 50%; /* Agar kedua tombol previous/next terbagi rata */
+}
+.download-button {
+    width: 100%; /* Tombol download memenuhi lebar */
+    margin-top: 5px;
 }
 .header .control-nav {
     display: flex;
     gap: 10px;
+}
+
+
+/* ========================================================== */
+/* PERBAIKAN RESPONSIVE (MEDIA QUERIES V13) */
+/* ========================================================== */
+
+@media (min-width: 601px) {
+    /* Untuk Tampilan Tablet/Desktop */
+    .episode-controls {
+        flex-direction: row; /* Kembali ke baris di desktop/tablet */
+        justify-content: space-between;
+    }
+    .ep-nav {
+        width: auto;
+    }
+    .btn-nav-ep {
+        width: auto;
+    }
+    .download-button {
+        width: auto;
+        margin-top: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    
+    .header {
+        flex-direction: row; 
+        align-items: center;
+        padding: 10px;
+    }
+
+    .logo a {
+        font-size: 1.4em; 
+    }
+
+    /* Search Bar mobile V13 */
+    .search-bar {
+        padding: 0 5px 0 10px; 
+        width: 140px; /* Sesuaikan lebar di HP */
+    }
+    .search-bar input {
+        width: 100%; 
+        font-size: 0.8em;
+    }
+    
+    .header .control-nav {
+        gap: 5px;
+    }
+    .header .control-nav .btn {
+        padding: 8px 10px; 
+        font-size: 0.8em;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); 
+        gap: 10px;
+    }
+    
+    .anime-info {
+        min-height: 85px; 
+        font-size: 0.8em;
+    }
+    
+    .detail-header-content h1 {
+        font-size: 1.6em;
+    }
+    .poster-wrapper {
+        width: 140px;
+    }
+
+    .anime-meta-table {
+        max-width: 90%;
+    }
+
+    /* Sesuaikan genre tag di mobile */
+    .genre-tag {
+        font-size: 0.65em;
+        padding: 1px 4px;
+    }
+    .genre-tag-detail {
+        font-size: 0.7em;
+        padding: 2px 6px;
+    }
 }
